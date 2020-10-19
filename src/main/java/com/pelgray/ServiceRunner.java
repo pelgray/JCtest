@@ -19,6 +19,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class ServiceRunner {
     private static final Logger LOG = LoggerFactory.getLogger(ServiceRunner.class);
 
+    // Комментарий для теста GitHub Actions
     public static void main(String[] args) throws Exception {
         long start = System.currentTimeMillis();
         ApiContextInitializer.init();
