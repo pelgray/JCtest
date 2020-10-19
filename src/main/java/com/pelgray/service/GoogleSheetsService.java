@@ -144,7 +144,7 @@ public class GoogleSheetsService {
      * @return `true`, если существует
      */
     public boolean isValueExist(String value, int column) throws GoogleConnectionException, GoogleRequestException {
-        String range = String.format("%1$s:%1$s", (char) ('A' + (column - 1)));
+        String range = String.format("%1$s:%1$s", (char) ('B' + (column - 1)));
         List<List<Object>> values = getData(range);
         if (values != null && !values.isEmpty()) {
             for (List<Object> v : values) {
