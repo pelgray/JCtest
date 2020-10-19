@@ -26,5 +26,8 @@ jobs:
           name: Test report
           path: build/reports/tests/test/
 
+      - name: Test
+        run: gradle test
+
       - name: Build ShadowJar
         run: gradle shadowJar
