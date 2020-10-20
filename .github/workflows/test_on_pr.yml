@@ -17,9 +17,6 @@ jobs:
         with:
           java-version: 1.8
 
-#      - name: Build Project
-#        run: gradle build
-
       - name: Run tests
         run: gradle test
 
