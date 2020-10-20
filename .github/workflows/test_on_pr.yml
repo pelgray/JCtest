@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Run tests & check jar
+    name: Run tests & Check build jar
     runs-on: ubuntu-latest
 
     steps:
@@ -17,35 +17,22 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Build
-#        continue-on-error: true
+      - name: Build Project
         run: gradle build
 
-#      - name: Publish Test Report
-#        uses: scacap/action-surefire-report@v1
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          report_paths: '**/build/test-results/test/TEST-*.xml'
-
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1.3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          check_name: Unit Test Results
-          files: '**/build/test-results/**/*.xml'
-          report_individual_runs: true
-          deduplicate_classes_by_file_name: false
-
-      - name: Upload test report
+      - name: Archive Test Report
         uses: actions/upload-artifact@v2
-        if: always()
+        if: failure()
         with:
           name: Test report
           path: build/reports/tests/test/
 
-#      - name: Test
-#        run: gradle test
-
       - name: Build ShadowJar
         run: gradle shadowJar
+
+      - name: Publish Test Report
+        uses: scacap/action-surefire-report@v1
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          report_paths: '**/build/test-results/test/TEST-*.xml'
