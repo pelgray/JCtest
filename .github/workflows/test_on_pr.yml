@@ -18,8 +18,8 @@ jobs:
           java-version: 1.8
 
       - name: Build
-#        continue-on-error: true
-        run: gradle build --continue
+        continue-on-error: true
+        run: gradle build
 
       - name: Publish Test Report
         uses: scacap/action-surefire-report@v1
